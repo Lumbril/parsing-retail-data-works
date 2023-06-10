@@ -3,7 +3,7 @@ import re
 from selenium import webdriver
 
 BASE_URL = 'https://online.metro-cc.ru'
-URL = BASE_URL + '/category/myasnye/myaso'
+URL_CATEGORY = BASE_URL + '/category/myasnye/myaso'
 driver = webdriver.Chrome()
 
 
@@ -29,8 +29,8 @@ def get_pages_count(url: str):
 def get_targets():
     targets = []
 
-    for page_num in range(1, get_pages_count(URL) + 1):
-        driver.get(URL + f'?page={page_num}')
+    for page_num in range(1, get_pages_count(URL_CATEGORY) + 1):
+        driver.get(URL_CATEGORY + f'?page={page_num}')
 
         page = driver.page_source
 
@@ -45,11 +45,15 @@ def get_targets():
     return targets
 
 
+def collect_info(targets: list):
+    driver.get(BASE_URL + targets[0])
+
+    page = driver.page_source
+
+
 def main():
     targets = get_targets()
-
-    print(targets)
-    print(len(targets))
+    collect_info(targets)
 
 
 if __name__ == '__main__':
