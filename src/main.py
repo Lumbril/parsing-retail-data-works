@@ -6,7 +6,7 @@ from selenium import webdriver
 
 import pandas as pd
 
-from src.type_file import TypeFile
+from type_file import TypeFile
 
 
 BASE_URL = 'https://online.metro-cc.ru'
